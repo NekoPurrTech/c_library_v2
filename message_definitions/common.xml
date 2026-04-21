@@ -8102,5 +8102,134 @@
       <field type="int16_t" name="temperature" units="cdegC">Temperature</field>
       <field type="uint16_t" name="humidity" units="c%">Humidity</field>
     </message>
+    <message id="12922" name="UAVCAN_ENGINE_STATUS_TEN">
+      <description>UAVCAN engine status (ten Hz sample set) mirrored from uavcan_engine_status_ten uORB topic.</description>
+      <field type="uint64_t" name="timestamp">time since system start (microseconds)</field>
+
+      <field type="uint8_t" name="source_node_id">UAVCAN source node id</field>
+      <field type="uint8_t" name="ecu_index">The index of the publishing ECU</field>
+
+      <field type="float" name="lambda_a"/>
+      <field type="float" name="lambda_b"/>
+      <field type="float" name="fuel_inj_work_hours_a"/>
+      <field type="float" name="fuel_inj_work_hours_b"/>
+      <field type="uint8_t" name="fuel_inj_work_sta_a"/>
+      <field type="uint8_t" name="fuel_inj_work_sta_b"/>
+
+      <field type="float" name="fuel_pressure_kpa"/>
+      <field type="float" name="oil_pressure_kpa"/>
+      <field type="uint8_t" name="oil_temperature_c"/>
+      <field type="uint8_t" name="engine_torque"/>
+      <field type="uint8_t" name="boost_temp"/>
+      <field type="float" name="boost_pressure_kpa"/>
+      <field type="float" name="exhaust_valve_opening"/>
+      <field type="uint8_t" name="ambient_temp"/>
+
+      <field type="float" name="atmospheric_pre_a_kpa"/>
+      <field type="float" name="atmospheric_pre_b_kpa"/>
+      <field type="float" name="supply_voltage_a"/>
+      <field type="float" name="supply_voltage_b"/>
+
+      <field type="uint16_t" name=" cyl_exh_temp_1"/>
+      <field type="uint16_t" name="cyl_exh_temp_2"/>
+      <field type="uint16_t" name="cyl_exh_temp_3"/>
+      <field type="uint16_t" name="cyl_exh_temp_4"/>
+
+      <field type="uint8_t" name="oil_level_mm"/>
+      <field type="uint16_t" name="emergstatime_count_a"/>
+      <field type="uint16_t" name="emergstatime_count_b"/>
+
+      <field type="uint8_t" name="engine_powermode_req_a"/>
+      <field type="uint8_t" name="engine_powermode_req_b"/>
+      <field type="uint16_t" name="throttle_opening_req_val_a"/>
+      <field type="uint16_t" name="throttle_opening_req_val_b"/>
+      <field type="uint16_t" name="speed_req_val_a"/>
+      <field type="uint16_t" name="speed_req_val_b"/>
+
+      <field type="float" name="flash_rwgvopntgt"/>
+      <field type="float" name="bpc_pdesval"/>
+
+      <field type="uint8_t" name="engine_aim_atl_ctlstatus_a"/>
+      <field type="uint8_t" name="engine_aim_atl_ctlstatus_b"/>
+      <field type="uint8_t" name="over_boost_speed_sta"/>
+      <field type="uint8_t" name="ign_enable_state"/>
+
+      <field type="uint8_t" name="sens_state_oxygen"/>
+      <field type="uint8_t" name="sens_state_cyl_exh_temp"/>
+      <field type="uint8_t" name="sens_state_oil_fuel"/>
+      <field type="uint8_t" name="sens_state_boost_exh"/>
+      <field type="uint8_t" name="sens_state_atmospheric_temp"/>
+      <field type="uint8_t" name="msg_state_can"/>
+      <field type="uint8_t" name="msg_volt_state_422_volt"/>
+
+      <field type="float" name="voltage_v"/>
+      <field type="float" name="current_a"/>
+      <field type="float" name="temperature_k"/>
+
+      <field type="int32_t" name="rpm"/>
+      <field type="uint8_t" name="power_rating_pct"/>
+
+      <field type="uint8_t" name="esc_index"/>
+      <field type="uint8_t[4]" name="padding0"/>
+    </message>
+
+    <!-- UAVCAN engine status (hundred Hz) -->
+    <message id="12923" name="UAVCAN_ENGINE_STATUS_HUN">
+      <description>UAVCAN engine status (hundred Hz sample set) mirrored from uavcan_engine_status_hun uORB topic.</description>
+      <field type="uint64_t" name="timestamp">time since system start (microseconds)</field>
+
+      <field type="uint8_t" name="source_node_id">UAVCAN source node id</field>
+      <field type="uint8_t" name="ecu_index">The index of the publishing ECU</field>
+
+      <field type="uint8_t" name="manifold_temp_a_c"/>
+      <field type="uint8_t" name="manifold_temp_b_c"/>
+      <field type="float" name="manifold_pre_a_kpa"/>
+      <field type="float" name="manifold_pre_b_kpa"/>
+
+      <field type="uint8_t" name="cyl_coolant_temp_1_c"/>
+      <field type="uint8_t" name="cyl_coolant_temp_2_c"/>
+      <field type="uint8_t" name="cyl_coolant_temp_3_c"/>
+      <field type="uint8_t" name="cyl_coolant_temp_4_c"/>
+
+      <field type="uint32_t" name="engine_speed_a_rpm"/>
+      <field type="uint32_t" name="engine_speed_b_rpm"/>
+
+      <field type="float" name="throttle_pos_sens_a_per"/>
+      <field type="float" name="throttle_pos_sens_b_per"/>
+
+      <field type="uint16_t" name="speed_send_val_rpm"/>
+      <field type="float" name="throttle_opening_send_val"/>
+
+      <field type="uint8_t" name="engine_powermode_a"/>
+      <field type="uint8_t" name="engine_powermode_b"/>
+
+      <field type="float" name="instantaneous_fuel_consp_a"/>
+      <field type="uint16_t" name="average_fuel_consp_a"/>
+      <field type="float" name="instantaneous_fuel_consp_b"/>
+      <field type="uint16_t" name="average_fuel_consp_b"/>
+
+      <field type="uint8_t" name="sens_state_manifold"/>
+      <field type="uint8_t" name="sens_state_coolant"/>
+      <field type="uint8_t" name="sens_state_throttle"/>
+      <field type="uint8_t" name="sens_state_curved_knock"/>
+      <field type="uint8_t" name="sens_state_inj_a"/>
+      <field type="uint8_t" name="sens_state_inj_b"/>
+      <field type="uint8_t" name="sens_state_ign_coil"/>
+      <field type="uint8_t" name="sens_state_pwm"/>
+
+      <field type="uint8_t[4]" name="padding0"/>
+    </message>
+
+    <!-- Toggle switch messages from GCS (commands) -->
+    <message id="12924" name="TOGGLE_SWITCHES">
+      <description>Grouped toggle switch commands (GCS). Fields correspond to specific switches: Fuel Pump 1/2 (amber), Water Cooler Fan 1/2 and Inter Cooler Fan (blue), Engine Start (green), Emergency STOP (red). Each field value: 0=toggle, 1=on, 2=off.</description>
+      <field type="uint8_t" name="fuel_pump_1">Fuel Pump 1 (amber)</field>
+      <field type="uint8_t" name="fuel_pump_2">Fuel Pump 2 (amber)</field>
+      <field type="uint8_t" name="water_cooler_fan_1">Water Cooler Fan 1 (blue)</field>
+      <field type="uint8_t" name="water_cooler_fan_2">Water Cooler Fan 2 (blue)</field>
+      <field type="uint8_t" name="inter_cooler_fan">Inter Cooler Fan (blue)</field>
+      <field type="uint8_t" name="engine_start">Engine Start (green)</field>
+      <field type="uint8_t" name="emergency_stop">Emergency STOP (red)</field>
+    </message>
   </messages>
 </mavlink>
