@@ -15063,6 +15063,273 @@ static void mavlink_test_hygrometer_sensor(uint8_t system_id, uint8_t component_
 #endif
 }
 
+static void mavlink_test_uavcan_engine_status_ten(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_UAVCAN_ENGINE_STATUS_TEN >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_uavcan_engine_status_ten_t packet_in = {
+        93372036854775807ULL,73.0,101.0,129.0,157.0,185.0,213.0,241.0,269.0,297.0,325.0,353.0,381.0,409.0,437.0,465.0,493.0,521.0,963501416,21395,21499,21603,21707,21811,21915,22019,22123,22227,22331,49,116,183,250,61,128,195,6,73,140,207,18,85,152,219,30,97,164,231,42,109,176,243,54,{ 121, 122, 123, 124 }
+    };
+    mavlink_uavcan_engine_status_ten_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.timestamp = packet_in.timestamp;
+        packet1.lambda_a = packet_in.lambda_a;
+        packet1.lambda_b = packet_in.lambda_b;
+        packet1.fuel_inj_work_hours_a = packet_in.fuel_inj_work_hours_a;
+        packet1.fuel_inj_work_hours_b = packet_in.fuel_inj_work_hours_b;
+        packet1.fuel_pressure_kpa = packet_in.fuel_pressure_kpa;
+        packet1.oil_pressure_kpa = packet_in.oil_pressure_kpa;
+        packet1.boost_pressure_kpa = packet_in.boost_pressure_kpa;
+        packet1.exhaust_valve_opening = packet_in.exhaust_valve_opening;
+        packet1.atmospheric_pre_a_kpa = packet_in.atmospheric_pre_a_kpa;
+        packet1.atmospheric_pre_b_kpa = packet_in.atmospheric_pre_b_kpa;
+        packet1.supply_voltage_a = packet_in.supply_voltage_a;
+        packet1.supply_voltage_b = packet_in.supply_voltage_b;
+        packet1.flash_rwgvopntgt = packet_in.flash_rwgvopntgt;
+        packet1.bpc_pdesval = packet_in.bpc_pdesval;
+        packet1.voltage_v = packet_in.voltage_v;
+        packet1.current_a = packet_in.current_a;
+        packet1.temperature_k = packet_in.temperature_k;
+        packet1.rpm = packet_in.rpm;
+        packet1.cyl_exh_temp_1 = packet_in.cyl_exh_temp_1;
+        packet1.cyl_exh_temp_2 = packet_in.cyl_exh_temp_2;
+        packet1.cyl_exh_temp_3 = packet_in.cyl_exh_temp_3;
+        packet1.cyl_exh_temp_4 = packet_in.cyl_exh_temp_4;
+        packet1.emergstatime_count_a = packet_in.emergstatime_count_a;
+        packet1.emergstatime_count_b = packet_in.emergstatime_count_b;
+        packet1.throttle_opening_req_val_a = packet_in.throttle_opening_req_val_a;
+        packet1.throttle_opening_req_val_b = packet_in.throttle_opening_req_val_b;
+        packet1.speed_req_val_a = packet_in.speed_req_val_a;
+        packet1.speed_req_val_b = packet_in.speed_req_val_b;
+        packet1.source_node_id = packet_in.source_node_id;
+        packet1.ecu_index = packet_in.ecu_index;
+        packet1.fuel_inj_work_sta_a = packet_in.fuel_inj_work_sta_a;
+        packet1.fuel_inj_work_sta_b = packet_in.fuel_inj_work_sta_b;
+        packet1.oil_temperature_c = packet_in.oil_temperature_c;
+        packet1.engine_torque = packet_in.engine_torque;
+        packet1.boost_temp = packet_in.boost_temp;
+        packet1.ambient_temp = packet_in.ambient_temp;
+        packet1.oil_level_mm = packet_in.oil_level_mm;
+        packet1.engine_powermode_req_a = packet_in.engine_powermode_req_a;
+        packet1.engine_powermode_req_b = packet_in.engine_powermode_req_b;
+        packet1.engine_aim_atl_ctlstatus_a = packet_in.engine_aim_atl_ctlstatus_a;
+        packet1.engine_aim_atl_ctlstatus_b = packet_in.engine_aim_atl_ctlstatus_b;
+        packet1.over_boost_speed_sta = packet_in.over_boost_speed_sta;
+        packet1.ign_enable_state = packet_in.ign_enable_state;
+        packet1.sens_state_oxygen = packet_in.sens_state_oxygen;
+        packet1.sens_state_cyl_exh_temp = packet_in.sens_state_cyl_exh_temp;
+        packet1.sens_state_oil_fuel = packet_in.sens_state_oil_fuel;
+        packet1.sens_state_boost_exh = packet_in.sens_state_boost_exh;
+        packet1.sens_state_atmospheric_temp = packet_in.sens_state_atmospheric_temp;
+        packet1.msg_state_can = packet_in.msg_state_can;
+        packet1.msg_volt_state_422_volt = packet_in.msg_volt_state_422_volt;
+        packet1.power_rating_pct = packet_in.power_rating_pct;
+        packet1.esc_index = packet_in.esc_index;
+        
+        mav_array_memcpy(packet1.padding0, packet_in.padding0, sizeof(uint8_t)*4);
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_UAVCAN_ENGINE_STATUS_TEN_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_UAVCAN_ENGINE_STATUS_TEN_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_uavcan_engine_status_ten_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_uavcan_engine_status_ten_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_uavcan_engine_status_ten_pack(system_id, component_id, &msg , packet1.timestamp , packet1.source_node_id , packet1.ecu_index , packet1.lambda_a , packet1.lambda_b , packet1.fuel_inj_work_hours_a , packet1.fuel_inj_work_hours_b , packet1.fuel_inj_work_sta_a , packet1.fuel_inj_work_sta_b , packet1.fuel_pressure_kpa , packet1.oil_pressure_kpa , packet1.oil_temperature_c , packet1.engine_torque , packet1.boost_temp , packet1.boost_pressure_kpa , packet1.exhaust_valve_opening , packet1.ambient_temp , packet1.atmospheric_pre_a_kpa , packet1.atmospheric_pre_b_kpa , packet1.supply_voltage_a , packet1.supply_voltage_b , packet1.cyl_exh_temp_1 , packet1.cyl_exh_temp_2 , packet1.cyl_exh_temp_3 , packet1.cyl_exh_temp_4 , packet1.oil_level_mm , packet1.emergstatime_count_a , packet1.emergstatime_count_b , packet1.engine_powermode_req_a , packet1.engine_powermode_req_b , packet1.throttle_opening_req_val_a , packet1.throttle_opening_req_val_b , packet1.speed_req_val_a , packet1.speed_req_val_b , packet1.flash_rwgvopntgt , packet1.bpc_pdesval , packet1.engine_aim_atl_ctlstatus_a , packet1.engine_aim_atl_ctlstatus_b , packet1.over_boost_speed_sta , packet1.ign_enable_state , packet1.sens_state_oxygen , packet1.sens_state_cyl_exh_temp , packet1.sens_state_oil_fuel , packet1.sens_state_boost_exh , packet1.sens_state_atmospheric_temp , packet1.msg_state_can , packet1.msg_volt_state_422_volt , packet1.voltage_v , packet1.current_a , packet1.temperature_k , packet1.rpm , packet1.power_rating_pct , packet1.esc_index , packet1.padding0 );
+    mavlink_msg_uavcan_engine_status_ten_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_uavcan_engine_status_ten_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.source_node_id , packet1.ecu_index , packet1.lambda_a , packet1.lambda_b , packet1.fuel_inj_work_hours_a , packet1.fuel_inj_work_hours_b , packet1.fuel_inj_work_sta_a , packet1.fuel_inj_work_sta_b , packet1.fuel_pressure_kpa , packet1.oil_pressure_kpa , packet1.oil_temperature_c , packet1.engine_torque , packet1.boost_temp , packet1.boost_pressure_kpa , packet1.exhaust_valve_opening , packet1.ambient_temp , packet1.atmospheric_pre_a_kpa , packet1.atmospheric_pre_b_kpa , packet1.supply_voltage_a , packet1.supply_voltage_b , packet1.cyl_exh_temp_1 , packet1.cyl_exh_temp_2 , packet1.cyl_exh_temp_3 , packet1.cyl_exh_temp_4 , packet1.oil_level_mm , packet1.emergstatime_count_a , packet1.emergstatime_count_b , packet1.engine_powermode_req_a , packet1.engine_powermode_req_b , packet1.throttle_opening_req_val_a , packet1.throttle_opening_req_val_b , packet1.speed_req_val_a , packet1.speed_req_val_b , packet1.flash_rwgvopntgt , packet1.bpc_pdesval , packet1.engine_aim_atl_ctlstatus_a , packet1.engine_aim_atl_ctlstatus_b , packet1.over_boost_speed_sta , packet1.ign_enable_state , packet1.sens_state_oxygen , packet1.sens_state_cyl_exh_temp , packet1.sens_state_oil_fuel , packet1.sens_state_boost_exh , packet1.sens_state_atmospheric_temp , packet1.msg_state_can , packet1.msg_volt_state_422_volt , packet1.voltage_v , packet1.current_a , packet1.temperature_k , packet1.rpm , packet1.power_rating_pct , packet1.esc_index , packet1.padding0 );
+    mavlink_msg_uavcan_engine_status_ten_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_uavcan_engine_status_ten_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_uavcan_engine_status_ten_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.source_node_id , packet1.ecu_index , packet1.lambda_a , packet1.lambda_b , packet1.fuel_inj_work_hours_a , packet1.fuel_inj_work_hours_b , packet1.fuel_inj_work_sta_a , packet1.fuel_inj_work_sta_b , packet1.fuel_pressure_kpa , packet1.oil_pressure_kpa , packet1.oil_temperature_c , packet1.engine_torque , packet1.boost_temp , packet1.boost_pressure_kpa , packet1.exhaust_valve_opening , packet1.ambient_temp , packet1.atmospheric_pre_a_kpa , packet1.atmospheric_pre_b_kpa , packet1.supply_voltage_a , packet1.supply_voltage_b , packet1.cyl_exh_temp_1 , packet1.cyl_exh_temp_2 , packet1.cyl_exh_temp_3 , packet1.cyl_exh_temp_4 , packet1.oil_level_mm , packet1.emergstatime_count_a , packet1.emergstatime_count_b , packet1.engine_powermode_req_a , packet1.engine_powermode_req_b , packet1.throttle_opening_req_val_a , packet1.throttle_opening_req_val_b , packet1.speed_req_val_a , packet1.speed_req_val_b , packet1.flash_rwgvopntgt , packet1.bpc_pdesval , packet1.engine_aim_atl_ctlstatus_a , packet1.engine_aim_atl_ctlstatus_b , packet1.over_boost_speed_sta , packet1.ign_enable_state , packet1.sens_state_oxygen , packet1.sens_state_cyl_exh_temp , packet1.sens_state_oil_fuel , packet1.sens_state_boost_exh , packet1.sens_state_atmospheric_temp , packet1.msg_state_can , packet1.msg_volt_state_422_volt , packet1.voltage_v , packet1.current_a , packet1.temperature_k , packet1.rpm , packet1.power_rating_pct , packet1.esc_index , packet1.padding0 );
+    mavlink_msg_uavcan_engine_status_ten_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("UAVCAN_ENGINE_STATUS_TEN") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_UAVCAN_ENGINE_STATUS_TEN) != NULL);
+#endif
+}
+
+static void mavlink_test_uavcan_engine_status_hun(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_UAVCAN_ENGINE_STATUS_HUN >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_uavcan_engine_status_hun_t packet_in = {
+        93372036854775807ULL,73.0,101.0,963498296,963498504,185.0,213.0,241.0,269.0,297.0,19523,19627,19731,27,94,161,228,39,106,173,240,51,118,185,252,63,130,197,8,75,142,{ 209, 210, 211, 212 }
+    };
+    mavlink_uavcan_engine_status_hun_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.timestamp = packet_in.timestamp;
+        packet1.manifold_pre_a_kpa = packet_in.manifold_pre_a_kpa;
+        packet1.manifold_pre_b_kpa = packet_in.manifold_pre_b_kpa;
+        packet1.engine_speed_a_rpm = packet_in.engine_speed_a_rpm;
+        packet1.engine_speed_b_rpm = packet_in.engine_speed_b_rpm;
+        packet1.throttle_pos_sens_a_per = packet_in.throttle_pos_sens_a_per;
+        packet1.throttle_pos_sens_b_per = packet_in.throttle_pos_sens_b_per;
+        packet1.throttle_opening_send_val = packet_in.throttle_opening_send_val;
+        packet1.instantaneous_fuel_consp_a = packet_in.instantaneous_fuel_consp_a;
+        packet1.instantaneous_fuel_consp_b = packet_in.instantaneous_fuel_consp_b;
+        packet1.speed_send_val_rpm = packet_in.speed_send_val_rpm;
+        packet1.average_fuel_consp_a = packet_in.average_fuel_consp_a;
+        packet1.average_fuel_consp_b = packet_in.average_fuel_consp_b;
+        packet1.source_node_id = packet_in.source_node_id;
+        packet1.ecu_index = packet_in.ecu_index;
+        packet1.manifold_temp_a_c = packet_in.manifold_temp_a_c;
+        packet1.manifold_temp_b_c = packet_in.manifold_temp_b_c;
+        packet1.cyl_coolant_temp_1_c = packet_in.cyl_coolant_temp_1_c;
+        packet1.cyl_coolant_temp_2_c = packet_in.cyl_coolant_temp_2_c;
+        packet1.cyl_coolant_temp_3_c = packet_in.cyl_coolant_temp_3_c;
+        packet1.cyl_coolant_temp_4_c = packet_in.cyl_coolant_temp_4_c;
+        packet1.engine_powermode_a = packet_in.engine_powermode_a;
+        packet1.engine_powermode_b = packet_in.engine_powermode_b;
+        packet1.sens_state_manifold = packet_in.sens_state_manifold;
+        packet1.sens_state_coolant = packet_in.sens_state_coolant;
+        packet1.sens_state_throttle = packet_in.sens_state_throttle;
+        packet1.sens_state_curved_knock = packet_in.sens_state_curved_knock;
+        packet1.sens_state_inj_a = packet_in.sens_state_inj_a;
+        packet1.sens_state_inj_b = packet_in.sens_state_inj_b;
+        packet1.sens_state_ign_coil = packet_in.sens_state_ign_coil;
+        packet1.sens_state_pwm = packet_in.sens_state_pwm;
+        
+        mav_array_memcpy(packet1.padding0, packet_in.padding0, sizeof(uint8_t)*4);
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_UAVCAN_ENGINE_STATUS_HUN_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_UAVCAN_ENGINE_STATUS_HUN_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_uavcan_engine_status_hun_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_uavcan_engine_status_hun_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_uavcan_engine_status_hun_pack(system_id, component_id, &msg , packet1.timestamp , packet1.source_node_id , packet1.ecu_index , packet1.manifold_temp_a_c , packet1.manifold_temp_b_c , packet1.manifold_pre_a_kpa , packet1.manifold_pre_b_kpa , packet1.cyl_coolant_temp_1_c , packet1.cyl_coolant_temp_2_c , packet1.cyl_coolant_temp_3_c , packet1.cyl_coolant_temp_4_c , packet1.engine_speed_a_rpm , packet1.engine_speed_b_rpm , packet1.throttle_pos_sens_a_per , packet1.throttle_pos_sens_b_per , packet1.speed_send_val_rpm , packet1.throttle_opening_send_val , packet1.engine_powermode_a , packet1.engine_powermode_b , packet1.instantaneous_fuel_consp_a , packet1.average_fuel_consp_a , packet1.instantaneous_fuel_consp_b , packet1.average_fuel_consp_b , packet1.sens_state_manifold , packet1.sens_state_coolant , packet1.sens_state_throttle , packet1.sens_state_curved_knock , packet1.sens_state_inj_a , packet1.sens_state_inj_b , packet1.sens_state_ign_coil , packet1.sens_state_pwm , packet1.padding0 );
+    mavlink_msg_uavcan_engine_status_hun_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_uavcan_engine_status_hun_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.timestamp , packet1.source_node_id , packet1.ecu_index , packet1.manifold_temp_a_c , packet1.manifold_temp_b_c , packet1.manifold_pre_a_kpa , packet1.manifold_pre_b_kpa , packet1.cyl_coolant_temp_1_c , packet1.cyl_coolant_temp_2_c , packet1.cyl_coolant_temp_3_c , packet1.cyl_coolant_temp_4_c , packet1.engine_speed_a_rpm , packet1.engine_speed_b_rpm , packet1.throttle_pos_sens_a_per , packet1.throttle_pos_sens_b_per , packet1.speed_send_val_rpm , packet1.throttle_opening_send_val , packet1.engine_powermode_a , packet1.engine_powermode_b , packet1.instantaneous_fuel_consp_a , packet1.average_fuel_consp_a , packet1.instantaneous_fuel_consp_b , packet1.average_fuel_consp_b , packet1.sens_state_manifold , packet1.sens_state_coolant , packet1.sens_state_throttle , packet1.sens_state_curved_knock , packet1.sens_state_inj_a , packet1.sens_state_inj_b , packet1.sens_state_ign_coil , packet1.sens_state_pwm , packet1.padding0 );
+    mavlink_msg_uavcan_engine_status_hun_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_uavcan_engine_status_hun_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_uavcan_engine_status_hun_send(MAVLINK_COMM_1 , packet1.timestamp , packet1.source_node_id , packet1.ecu_index , packet1.manifold_temp_a_c , packet1.manifold_temp_b_c , packet1.manifold_pre_a_kpa , packet1.manifold_pre_b_kpa , packet1.cyl_coolant_temp_1_c , packet1.cyl_coolant_temp_2_c , packet1.cyl_coolant_temp_3_c , packet1.cyl_coolant_temp_4_c , packet1.engine_speed_a_rpm , packet1.engine_speed_b_rpm , packet1.throttle_pos_sens_a_per , packet1.throttle_pos_sens_b_per , packet1.speed_send_val_rpm , packet1.throttle_opening_send_val , packet1.engine_powermode_a , packet1.engine_powermode_b , packet1.instantaneous_fuel_consp_a , packet1.average_fuel_consp_a , packet1.instantaneous_fuel_consp_b , packet1.average_fuel_consp_b , packet1.sens_state_manifold , packet1.sens_state_coolant , packet1.sens_state_throttle , packet1.sens_state_curved_knock , packet1.sens_state_inj_a , packet1.sens_state_inj_b , packet1.sens_state_ign_coil , packet1.sens_state_pwm , packet1.padding0 );
+    mavlink_msg_uavcan_engine_status_hun_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("UAVCAN_ENGINE_STATUS_HUN") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_UAVCAN_ENGINE_STATUS_HUN) != NULL);
+#endif
+}
+
+static void mavlink_test_toggle_switches(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
+{
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+    mavlink_status_t *status = mavlink_get_channel_status(MAVLINK_COMM_0);
+        if ((status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) && MAVLINK_MSG_ID_TOGGLE_SWITCHES >= 256) {
+            return;
+        }
+#endif
+    mavlink_message_t msg;
+        uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+        uint16_t i;
+    mavlink_toggle_switches_t packet_in = {
+        5,72,139,206,17,84,151
+    };
+    mavlink_toggle_switches_t packet1, packet2;
+        memset(&packet1, 0, sizeof(packet1));
+        packet1.fuel_pump_1 = packet_in.fuel_pump_1;
+        packet1.fuel_pump_2 = packet_in.fuel_pump_2;
+        packet1.water_cooler_fan_1 = packet_in.water_cooler_fan_1;
+        packet1.water_cooler_fan_2 = packet_in.water_cooler_fan_2;
+        packet1.inter_cooler_fan = packet_in.inter_cooler_fan;
+        packet1.engine_start = packet_in.engine_start;
+        packet1.emergency_stop = packet_in.emergency_stop;
+        
+        
+#ifdef MAVLINK_STATUS_FLAG_OUT_MAVLINK1
+        if (status->flags & MAVLINK_STATUS_FLAG_OUT_MAVLINK1) {
+           // cope with extensions
+           memset(MAVLINK_MSG_ID_TOGGLE_SWITCHES_MIN_LEN + (char *)&packet1, 0, sizeof(packet1)-MAVLINK_MSG_ID_TOGGLE_SWITCHES_MIN_LEN);
+        }
+#endif
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_toggle_switches_encode(system_id, component_id, &msg, &packet1);
+    mavlink_msg_toggle_switches_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_toggle_switches_pack(system_id, component_id, &msg , packet1.fuel_pump_1 , packet1.fuel_pump_2 , packet1.water_cooler_fan_1 , packet1.water_cooler_fan_2 , packet1.inter_cooler_fan , packet1.engine_start , packet1.emergency_stop );
+    mavlink_msg_toggle_switches_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_toggle_switches_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.fuel_pump_1 , packet1.fuel_pump_2 , packet1.water_cooler_fan_1 , packet1.water_cooler_fan_2 , packet1.inter_cooler_fan , packet1.engine_start , packet1.emergency_stop );
+    mavlink_msg_toggle_switches_decode(&msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+        memset(&packet2, 0, sizeof(packet2));
+        mavlink_msg_to_send_buffer(buffer, &msg);
+        for (i=0; i<mavlink_msg_get_send_buffer_length(&msg); i++) {
+            comm_send_ch(MAVLINK_COMM_0, buffer[i]);
+        }
+    mavlink_msg_toggle_switches_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+        
+        memset(&packet2, 0, sizeof(packet2));
+    mavlink_msg_toggle_switches_send(MAVLINK_COMM_1 , packet1.fuel_pump_1 , packet1.fuel_pump_2 , packet1.water_cooler_fan_1 , packet1.water_cooler_fan_2 , packet1.inter_cooler_fan , packet1.engine_start , packet1.emergency_stop );
+    mavlink_msg_toggle_switches_decode(last_msg, &packet2);
+        MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
+
+#ifdef MAVLINK_HAVE_GET_MESSAGE_INFO
+    MAVLINK_ASSERT(mavlink_get_message_info_by_name("TOGGLE_SWITCHES") != NULL);
+    MAVLINK_ASSERT(mavlink_get_message_info_by_id(MAVLINK_MSG_ID_TOGGLE_SWITCHES) != NULL);
+#endif
+}
+
 static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink_message_t *last_msg)
 {
     mavlink_test_sys_status(system_id, component_id, last_msg);
@@ -15292,6 +15559,9 @@ static void mavlink_test_common(uint8_t system_id, uint8_t component_id, mavlink
     mavlink_test_open_drone_id_arm_status(system_id, component_id, last_msg);
     mavlink_test_open_drone_id_system_update(system_id, component_id, last_msg);
     mavlink_test_hygrometer_sensor(system_id, component_id, last_msg);
+    mavlink_test_uavcan_engine_status_ten(system_id, component_id, last_msg);
+    mavlink_test_uavcan_engine_status_hun(system_id, component_id, last_msg);
+    mavlink_test_toggle_switches(system_id, component_id, last_msg);
 }
 
 #ifdef __cplusplus
